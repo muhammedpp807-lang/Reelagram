@@ -2,52 +2,48 @@
 
 A mobile-first Instagram-style Reels clone (React + Vite + Tailwind) with a **Firebase backend**: Auth, Firestore, and Storage.
 
-The app automatically detects whether Firebase is configured. If it isn't, it falls back to a fully working **demo mode** that uses in-memory mock data, so you can preview the UI before setting up Firebase.
+The Firebase project (`reelagram-81560`) is already wired up in `src/firebase.ts`,
+so you can just `npm install && npm run dev` and the app will read/write real
+data. The legacy demo-mode fallback still kicks in only if the config is removed.
 
 ---
 
-## 🚀 Quick start (demo mode, no setup)
+## 🚀 Quick start
 
 ```bash
 npm install
 npm run dev
 ```
 
-The app runs on `http://localhost:5173` in **demo mode** — log in with `you` / `password`.
+Open `http://localhost:5173` and sign up with any email + password — a new user
+will be created in Firebase Auth and a matching `users/{uid}` doc in Firestore.
 
 ---
 
-## 🔥 Connect to Firebase
+## 🔥 Using a different Firebase project
 
-### 1. Create a Firebase project
-
-1. Go to https://console.firebase.google.com/ and create a new project.
-2. **Enable Authentication → Sign-in method → Email/Password.**
-3. **Create a Firestore Database** (production mode).
-4. **Enable Storage.**
-
-### 2. Add a Web app
-
-In Project Settings → Your apps → click the `</>` icon to add a Web app. Copy the config object.
-
-### 3. Add your config
-
-```bash
-cp .env.example .env.local
-```
-
-Paste the values from step 2 into `.env.local`:
+The config is hard-coded in `src/firebase.ts` (and mirrored in `firebase.js`).
+You can either edit those files directly, or override at build time with Vite
+env vars in `.env.local`:
 
 ```env
 VITE_FIREBASE_API_KEY=...
 VITE_FIREBASE_AUTH_DOMAIN=your-app.firebaseapp.com
+VITE_FIREBASE_DATABASE_URL=https://your-app-default-rtdb.firebaseio.com
 VITE_FIREBASE_PROJECT_ID=your-app
 VITE_FIREBASE_STORAGE_BUCKET=your-app.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=...
 VITE_FIREBASE_APP_ID=...
+VITE_FIREBASE_MEASUREMENT_ID=...
 ```
 
-### 4. Deploy security rules
+Before going live, make sure you have:
+
+1. **Authentication → Sign-in method → Email/Password** enabled.
+2. A **Firestore Database** created.
+3. **Storage** enabled.
+
+### Deploy security rules
 
 ```bash
 # Install Firebase CLI
