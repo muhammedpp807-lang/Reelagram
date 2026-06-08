@@ -2,7 +2,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth } from "firebase/auth";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCtBHVg3FI4C3i1WKl_iNpB9lS-xTOT73I",
