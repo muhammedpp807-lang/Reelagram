@@ -16,20 +16,23 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-const email = getElementById('email').value;
-const password = getElementById('password').value
+  
 const submit = getElementById('submit');
 submit.addEventlistener("click",function(event){
 event.preventDefault()
+  const email = getElementById('email').value;
+const password = getElementById('password').value
 createUserWithEmailAndPassword(auth, email, password)
   
   .then((userCredential.user) => {;
   //Signed up
   const user = userCredential.user;
+  alert("Creating Account")
   //...
 })
   .catch((error) => {
     const errorCode =error.code;
     const errorMessage = error.message;
+    alert(errorMessage)
     //..
 })
