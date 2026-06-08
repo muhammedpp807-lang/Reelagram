@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStore } from "../store";
+import * as utils from './register.js';
 
 export function AuthPage() {
   const { login, signup } = useStore();
