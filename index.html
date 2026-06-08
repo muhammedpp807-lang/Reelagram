@@ -30,6 +30,39 @@ const db = getFirestore(app);
 const storage = getStorage(app); // Initialized storage to handle reel file uploads!
 
 console.log("🚀 Reelagram successfully linked to Firebase!");
+
+
+      async function uploadReel(file, caption, user) {
+  if (!file) return;
+
+  try {
+    // 1. Create a unique path inside Firebase Storage
+    const fileRef = ref(storage, `reels/${Date.now()}_${file.name}`);
+    
+    // 2. Upload the raw video bytes
+    console.log("Uploading video file...");
+    const snapshot = await uploadBytes(fileRef, file);
+    
+    // 3. Grab the public download link from Storage
+    const videoUrl = await getDownloadURL(snapshot.ref);
+    
+    // 4. Save the video reference metadata into Firestore database
+    await addDoc(collection(db, "reels"), {
+      username: user,
+      caption: caption,
+      videoUrl: videoUrl,
+      createdAt: new Date(),
+      likes: 0
+    });
+    
+    console.log("🎬 Reel posted successfully to Reelagram feed!");
+  } catch (error) {
+    console.error("Error uploading reel:", error);
+  }
+}
+
+// Expose globally if using inline HTML event handlers (onclick, etc.)
+window.uploadReel = uploadReel;
     </script>
   </body>
 </html>
