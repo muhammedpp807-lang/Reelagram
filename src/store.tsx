@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import type { Comment, Post, User } from "./types";
 import { initialPosts, initialUsers } from "./data/mock";
 import { isFirebaseConfigured } from "./firebase";
-import * as fb from "./firebaseData";
+import { db } from "./firebase";
 
 type Route =
   | { name: "auth" }
