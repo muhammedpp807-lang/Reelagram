@@ -2,7 +2,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
-
+import { getAuth } from "firebase/auth";
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCtBHVg3FI4C3i1WKl_iNpB9lS-xTOT73I",
@@ -16,5 +16,10 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-const email = getElementById('email").value;
-const password = getElementById('password").value
+const email = getElementById('email').value;
+const password = getElementById('password').value
+const submit = getElementById('submit');
+submit.addEventlistener("click",function(event){
+event.preventDefault()
+  alert(5)
+})
