@@ -21,5 +21,15 @@ const password = getElementById('password').value
 const submit = getElementById('submit');
 submit.addEventlistener("click",function(event){
 event.preventDefault()
-  alert(5)
+createUserWithEmailAndPassword(auth, email, password)
+  
+  .then((userCredential.user) => {;
+  //Signed up
+  const user = userCredential.user;
+  //...
+})
+  .catch((error) => {
+    const errorCode =error.code;
+    const errorMessage = error.message;
+    //..
 })
